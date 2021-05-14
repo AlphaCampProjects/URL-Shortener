@@ -1,1 +1,25 @@
-<h1>HI</h1>
+<div class='container mt-5'>
+  <h1 class='text-center'>URL shortener</h1>
+  <form action='/' method='POST'>
+    <div class='row mx-auto mt-5' style='width: 70%;'>
+      <div class='mb-3 row'>
+        <label for='inputUrl' class='col-1 col-form-label'>URL</label>
+        <div class='col-11'>
+          <input
+            type='url'
+            class='form-control'
+            id='inputUrl'
+            name='originUrl'
+          />
+        </div>
+      </div>
+      <div class='text-center mt-4'>
+        <button
+          type='submit'
+          class='btn btn-primary text-center'
+        >Create</button>
+      </div>
+    </div>
+
+  </form>
+</div>
