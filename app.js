@@ -17,11 +17,20 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
   console.log(req.body);
-  const shortener = generateUrl();
-  Url.create({ originUrl: req.body.originUrl, shortenUrl: shortener })
-    .then(() => res.render('index', { shortener }))
-    .catch((error) => console.log(error));
-  console.log(shortener);
+  //先尋找資料庫中是否有重複的originUrl，若有則直接取其的shortenUrl，若無，則創造新的短網址
+  Url.findOne({ originUrl: req.body.originUrl }, function (error, result) {
+    if (result) {
+      const shortener = result.shortenUrl;
+      console.log(shortener);
+      console.log(result);
+      res.render('index', { shortener });
+    } else {
+      const shortener = generateUrl();
+      Url.create({ originUrl: req.body.originUrl, shortenUrl: shortener })
+        .then(() => res.render('index', { shortener }))
+        .catch((error) => console.log(error));
+    }
+  });
 });
 // starts the express server and listening for connections.
 app.listen(PORT, () => {
