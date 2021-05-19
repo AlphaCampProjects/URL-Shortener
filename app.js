@@ -32,6 +32,13 @@ app.post('/', (req, res) => {
     }
   });
 });
+
+app.get('/:shortenUrl', (req, res) => {
+  console.log(req.params);
+  Url.findOne({ shortenUrl: req.params.shortenUrl }).then((url) =>
+    res.redirect(url.originUrl)
+  );
+});
 // starts the express server and listening for connections.
 app.listen(PORT, () => {
   console.log(`The express server is running on http://localhost:${PORT}`);
