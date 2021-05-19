@@ -21,20 +21,14 @@ app.post('/', (req, res) => {
   Url.findOne({ originUrl: req.body.originUrl }, function (error, result) {
     if (result) {
       const shortener = result.shortenUrl;
-      console.log(shortener);
-      console.log(result);
       res.render('index', { shortener });
     } else {
-      const shortener = generateUrl();
-      Url.create({ originUrl: req.body.originUrl, shortenUrl: shortener })
-        .then(() => res.render('index', { shortener }))
-        .catch((error) => console.log(error));
+      generateUrl(req, res);
     }
   });
 });
 
 app.get('/:shortenUrl', (req, res) => {
-  console.log(req.params);
   Url.findOne({ shortenUrl: req.params.shortenUrl }).then((url) =>
     res.redirect(url.originUrl)
   );
