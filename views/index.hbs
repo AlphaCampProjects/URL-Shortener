@@ -13,6 +13,15 @@
           />
         </div>
       </div>
+      {{#if shortener}}
+        <div class='alert alert-info text-center' role='alert'>
+          Here is your shortener URL
+          <a
+            href='#'
+            class='alert-link'
+          >https://tina-url.herokuapp.com/{{shortener}}</a>
+        </div>
+      {{/if}}
       <div class='text-center mt-4'>
         <button
           type='submit'

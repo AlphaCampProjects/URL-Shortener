@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 3000;
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const generateUrl = require('./generate_url');
+const Url = require('./models/url');
 
 require('./config/mongoose');
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
@@ -17,6 +18,9 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   console.log(req.body);
   const shortener = generateUrl();
+  Url.create({ originUrl: req.body.originUrl, shortenUrl: shortener })
+    .then(() => res.render('index', { shortener }))
+    .catch((error) => console.log(error));
   console.log(shortener);
 });
 // starts the express server and listening for connections.
