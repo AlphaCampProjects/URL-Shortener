@@ -1,34 +1,69 @@
 <div class='container mt-5'>
-  <h1 class='text-center'>URL shortener</h1>
-  <form action='/' method='POST'>
-    <div class='row mx-auto mt-5' style='width: 70%;'>
-      <div class='mb-3 row'>
-        <label for='inputUrl' class='col-1 col-form-label'>URL</label>
-        <div class='col-11'>
-          <input
-            type='url'
-            class='form-control'
-            id='inputUrl'
-            name='originUrl'
-          />
+  <h1 class='text-center title'>URL shortener</h1>
+  {{#unless shortener}}
+    <form action='/' method='POST'>
+      <div class='row mx-auto mt-4' style='width: 70%;'>
+        <div class='mb-3 row'>
+          <label
+            for='validationDefault01'
+            class='col-1 col-form-label'
+          >URL</label>
+          <div class='col-11'>
+            <input
+              type='url'
+              class='form-control'
+              id='validationDefault01'
+              name='originUrl'
+              required
+            />
+          </div>
+
+        </div>
+
+        <div class='text-center mt-4'>
+
+          <button
+            type='submit'
+            class='btn btn-primary text-center'
+          >Create</button>
         </div>
       </div>
-      {{#if shortener}}
-        <div class='alert alert-info text-center' role='alert'>
-          Here is your shortener URL
-          <a
-            href='/{{shortener}}'
-            class='alert-link'
-          >https://tina-url.herokuapp.com/{{shortener}}</a>
-        </div>
-      {{/if}}
+
+    </form>
+  {{/unless}}
+  {{#if shortener}}
+    <div class='row mx-auto complete-area' style='width: 70%;'>
+      <div
+        class='alert alert-info text-center alert-text mx-auto mt-3'
+        role='alert'
+        style='width: fit-content;'
+      >
+        短網址已產生
+      </div>
+      <div class='input-group mt-2'>
+        <label
+          for='validationDefault01'
+          class='col-1 col-form-label pr-2'
+        >URL</label>
+        <input
+          type='text'
+          class='form-control'
+          id='shorten-url'
+          value='https://tina-url.herokuapp.com/{{shortener}}'
+        />
+      </div>
       <div class='text-center mt-4'>
         <button
-          type='submit'
+          type='button'
+          class='btn btn-primary text-center copy-btn mx-2'
+        >複製網址</button>
+        <a
+          href='/'
+          type='button'
           class='btn btn-primary text-center'
-        >Create</button>
+        >產生新短網址</a>
+
       </div>
     </div>
-
-  </form>
+  {{/if}}
 </div>
