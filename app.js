@@ -18,7 +18,6 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
   //先尋找資料庫中是否有重複的originUrl，若有則直接取其的shortenUrl，若無，則創造新的短網址
-  generateUrl(req, res);
   Url.findOne({ originUrl: req.body.originUrl }, function (error, result) {
     if (result) {
       const shortener = result.shortenUrl;
