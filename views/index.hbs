@@ -1,61 +1,61 @@
 <div class='container mt-5'>
   <h1 class='text-center title'>URL shortener</h1>
+  <img
+    class='mx-auto d-block mt-5'
+    src='/images/link.png'
+    style='width: 10%;'
+  />
   {{#unless shortener}}
     <form action='/' method='POST'>
-      <div class='row mx-auto mt-4' style='width: 70%;'>
-        <div class='mb-3 row'>
-          <label
-            for='validationDefault01'
-            class='col-1 col-form-label'
-          >URL</label>
-          <div class='col-11'>
-            <input
-              type='url'
-              class='form-control'
-              id='validationDefault01'
-              name='originUrl'
-              required
-            />
-          </div>
+      <div class='row mx-auto mt-5' style='width: 60%;'>
+        <div class='input-group mb-3'>
+          <span class='input-group-text' id='basic-addon1'> URL </span>
+          <input
+            type='url'
+            class='form-control'
+            id='validationDefault01'
+            name='originUrl'
+            placeholder='請輸入網址，如：https://www.google.com.tw/'
+            aria-describedby='basic-addon1'
+            required
+          />
 
         </div>
 
-        <div class='text-center mt-4'>
+        <div class='text-center mt-2'>
 
           <button
             type='submit'
             class='btn btn-primary text-center'
-          >Create</button>
+          >Shorten</button>
         </div>
       </div>
 
     </form>
   {{/unless}}
   {{#if shortener}}
-    <div class='row mx-auto complete-area' style='width: 70%;'>
+    <div class='row mx-auto complete-area' style='width: 60%;'>
       <div
-        class='alert alert-info text-center alert-text mx-auto mt-3'
+        class='alert alert-info text-center alert-text mx-auto mt-4'
         role='alert'
         style='width: fit-content;'
       >
         短網址已產生
       </div>
       <div class='input-group mt-2'>
-        <label
-          for='validationDefault01'
-          class='col-1 col-form-label pr-2'
-        >URL</label>
+        <span class='input-group-text' id='basic-addon1'> URL </span>
         <input
           type='text'
           class='form-control'
           id='shorten-url'
+          aria-describedby='basic-addon1'
           value='https://tina-url.herokuapp.com/{{shortener}}'
         />
       </div>
       <div class='text-center mt-4'>
         <button
           type='button'
-          class='btn btn-primary text-center copy-btn mx-2'
+          class='btn btn-primary text-center copy-btn mx-3'
         >複製網址</button>
         <a
           href='/'
